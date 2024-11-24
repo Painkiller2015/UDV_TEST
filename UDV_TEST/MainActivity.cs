@@ -1,6 +1,5 @@
 using Android.Content;
 using UDV_TEST.Adapters;
-using UDV_TEST.DB_Worker;
 using UDV_TEST.Entity;
 using UDV_TEST.Services;
 using UDV_TEST.ViewModels;
@@ -10,7 +9,7 @@ namespace UDV_TEST
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
-        public static Chat_List_Model Chat_List { get; } = new();        
+        public static Chat_List_Model Chat_List { get; } = new();
         private ListView ChatListView = null;
         private Button BtnAddNewChat = null;
         private EditText newChatName = null;
@@ -21,7 +20,7 @@ namespace UDV_TEST
             SubscribeToEvents();
         }
         private void InitLocalComponents()
-        {            
+        {
             SetContentView(Resource.Layout.Chat_list);
 
             BtnAddNewChat = FindViewById<Button>(Resource.Id.BtnAddNewChat);
@@ -58,7 +57,7 @@ namespace UDV_TEST
 
             StartActivity(intent);
         }
-        
+
         public void PopUpAddNewChat()
         {
             newChatName = new EditText(this);
@@ -86,8 +85,8 @@ namespace UDV_TEST
 
         private void UpdateChatList()
         {
-            Chat_List.FillChats();            
-            ChatListView.Adapter = new Chat_List_Item_Adapter(this, Chat_List.chats);            
+            Chat_List.FillChats();
+            ChatListView.Adapter = new Chat_List_Item_Adapter(this, Chat_List.chats);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace UDV_TEST.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var view = convertView ?? LayoutInflater.From(context).Inflate(Resource.Layout.Chat_list_Item, parent, false);
-            
+
 
             var HeaderTextView = view.FindViewById<TextView>(Resource.Id.Header);
             var AuthorNameTextView = view.FindViewById<TextView>(Resource.Id.AuthorName);

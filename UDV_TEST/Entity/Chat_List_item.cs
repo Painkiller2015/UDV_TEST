@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UDV_TEST.Entity
+﻿namespace UDV_TEST.Entity
 {
     public class Chat_List_item
     {

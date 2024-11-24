@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UDV_TEST.Entity;
-using UDV_TEST.ViewModels;
+﻿using UDV_TEST.Entity;
 
 namespace UDV_TEST.Services
 {

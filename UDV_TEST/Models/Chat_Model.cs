@@ -1,12 +1,8 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UDV_TEST.DB_Worker;
-using UDV_TEST.Entity;
-using UDV_TEST.Services;
-using BotService;
+﻿using BotService;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using UDV_TEST.DB_Worker;
+using UDV_TEST.Services;
 
 namespace UDV_TEST.ViewModels
 {

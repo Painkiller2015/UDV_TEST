@@ -7,9 +7,9 @@ namespace UDV_TEST.DB_Worker
     {
         [Key]
         public int Id { get; set; }
-        [Required]        
-        public int Id_Chat {  get; set; }
-        [ForeignKey("Id_Chat")]        
+        [Required]
+        public int Id_Chat { get; set; }
+        [ForeignKey("Id_Chat")]
         public Chat Chat { get; set; }
         [Required]
         public long TimeTicks { get; set; }

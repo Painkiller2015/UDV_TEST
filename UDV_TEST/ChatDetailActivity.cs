@@ -1,13 +1,5 @@
 ﻿using Android.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UDV_TEST.Adapters;
-using UDV_TEST.DB_Worker;
-using UDV_TEST.Entity;
-using UDV_TEST.Services;
 using UDV_TEST.ViewModels;
 using static UDV_TEST.ViewModels.Chat_Model;
 
@@ -30,7 +22,7 @@ namespace UDV_TEST
             SubscribeToEvents();
         }
         private void InitLocalComponents()
-        {            
+        {
             SetContentView(Resource.Layout.Chat);
 
             chatId = Intent.GetIntExtra("ChatId", 0);
@@ -74,7 +66,7 @@ namespace UDV_TEST
         }
         private void UpdateChatList()
         {
-            chat.FillChat();            
+            chat.FillChat();
             chatMessagesView.Adapter = new Chat_Message_Adapter(this, chat.messages);
         }
     }

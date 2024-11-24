@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UDV_TEST.DB_Worker;
-
-namespace UDV_TEST.Services
+﻿namespace UDV_TEST.Services
 {
     public static class DB_Service
     {
@@ -18,8 +11,8 @@ namespace UDV_TEST.Services
                 _ => ""
             };
         }
-        public static string GetUserNameById(bool? id) 
-        {            
+        public static string GetUserNameById(bool? id)
+        {
             return id switch
             {
                 true => Application.Context.Resources.GetString(Resource.String.Bot_Name),

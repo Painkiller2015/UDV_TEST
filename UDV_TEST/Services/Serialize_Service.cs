@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace UDV_TEST.Services
 {
     public static class Serialize_Service
     {
-        static public string ToJSON(object item)
+        public static string ToJSON(object item)
         {
-            return JsonSerializer.Serialize(item);            
+            return JsonSerializer.Serialize(item);
         }
-        static public T FromJSON<T>(string code)
+        public static T FromJSON<T>(string code)
         {
-            return JsonSerializer.Deserialize<T>(code);            
+            return JsonSerializer.Deserialize<T>(code);
         }
     }
 }

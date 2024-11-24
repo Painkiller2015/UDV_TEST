@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.Views;
-using UDV_TEST.Entity;
 using static UDV_TEST.ViewModels.Chat_Model;
 
 namespace UDV_TEST.Adapters
@@ -8,7 +7,7 @@ namespace UDV_TEST.Adapters
     public class Chat_Message_Adapter : BaseAdapter<Chat_Message>
     {
         private readonly List<Chat_Message> items;
-        private readonly Context context;        
+        private readonly Context context;
         public Chat_Message_Adapter(Context context, List<Chat_Message> items)
         {
             this.context = context;
@@ -23,7 +22,7 @@ namespace UDV_TEST.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var view = convertView ?? LayoutInflater.From(context).Inflate(Resource.Layout.Chat_Message, parent, false);
-            
+
 
             var AuthorNameTextView = view.FindViewById<TextView>(Resource.Id.AuthorName);
             var MessageTextView = view.FindViewById<TextView>(Resource.Id.Message);

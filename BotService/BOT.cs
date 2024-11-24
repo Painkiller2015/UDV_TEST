@@ -4,7 +4,7 @@ namespace BotService
 {
     public static class BOT
     {
-        private static readonly Dictionary<string, string> answerDict = new();                
+        private static readonly Dictionary<string, string> answerDict = new();
         static BOT()
         {
             answerDict.Add("Hello", "Привет");
@@ -15,7 +15,7 @@ namespace BotService
             Answer answer = new
             (
                 Message = answerDict.GetValueOrDefault(Message) ?? "Команды не существует"
-            );            
+            );
 
             return answer;
         }

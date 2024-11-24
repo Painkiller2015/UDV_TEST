@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Чат бот</string>
+    <string name="app_text">Чат бот</string>
+	<string name="Bot_Name">Bot_Name</string>
+	<string name="User_Name">User_Name</string>
+	<string name="Add_Chat">Новый чат</string>
+	<string name="GoBack">Назад</string>	
+</resources>

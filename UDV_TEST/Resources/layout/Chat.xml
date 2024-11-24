@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	<Button
+		android:id="@+id/BtnBack"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:paddingTop="0px"
+		android:background="@mipmap/gobackimage" 
+    />
+	<ListView
+		android:id="@+id/MessagesList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_below="@id/BtnBack"		
+	/>
+	<LinearLayout android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+		<EditText
+			android:id="@+id/NewMessage"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:layout_weight="0.9"						
+			android:inputType="text" 
+			android:elevation="8dp"
+		/>
+		<Button
+			android:id="@+id/BtnSendMessage"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_alignParentBottom="true"
+			
+			android:elevation="8dp"
+			android:background="@mipmap/sendmessageimage" 
+		/>
+	</LinearLayout>	
+</RelativeLayout>

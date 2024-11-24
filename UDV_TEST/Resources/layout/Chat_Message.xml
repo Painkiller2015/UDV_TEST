@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	tools:context=".ChatDetailActivity">
+	<TextView
+		android:id="@+id/AuthorName"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textStyle="bold"	
+		android:paddingTop="5px"	
+	/>
+	<TextView
+	    android:id="@+id/Message"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"		
+		android:paddingTop="100px"	
+	/>
+	<TextView
+	    android:id="@+id/Date"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="right"
+		android:paddingTop="200px"		
+	/>
+</RelativeLayout>

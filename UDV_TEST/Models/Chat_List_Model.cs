@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using UDV_TEST.DB_Worker;
-using UDV_TEST.Entity;
+using UDV_TEST.ViewModels;
 using UDV_TEST.Services;
 
 namespace UDV_TEST.ViewModels
@@ -10,16 +10,23 @@ namespace UDV_TEST.ViewModels
     {
         public List<Chat_List_item> chats = null;
         public event PropertyChangedEventHandler? PropertyChanged;
-
+        public class Chat_List_item
+        {
+            public required int Id { get; set; }
+            public required string Header { get; set; }
+            public string? Author { get; set; }
+            public string? Message { get; set; }
+            public string? Date { get; set; }
+        }
         public void AddNewChat(string chatName)
         {
             using (BaseContext db = new())
             {
                 Chat newChat = new Chat() { Name = chatName };
-
-                chats.Add(new Chat_List_item() { Id = newChat.Id, Header = chatName });
+                
                 db.Chats.Add(newChat);
                 db.SaveChanges();
+                chats.Add(new Chat_List_item() { Id = newChat.Id, Header = chatName });
 
                 PropertyChanged.Invoke(this, null);
             };

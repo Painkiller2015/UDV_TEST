@@ -1,6 +1,6 @@
 using Android.Content;
 using UDV_TEST.Adapters;
-using UDV_TEST.Entity;
+using static UDV_TEST.ViewModels.Chat_List_Model;
 using UDV_TEST.Services;
 using UDV_TEST.ViewModels;
 
@@ -26,7 +26,7 @@ namespace UDV_TEST
             BtnAddNewChat = FindViewById<Button>(Resource.Id.BtnAddNewChat);
             ChatListView = FindViewById<ListView>(Resource.Id.ChatList);
 
-            UpdateChatList();
+            UpdateChatList(true);
         }
         private void SubscribeToEvents()
         {
@@ -45,19 +45,6 @@ namespace UDV_TEST
                 GoToChat(e.Position);
             };
         }
-
-        private void GoToChat(int elPosition)
-        {
-            var selectedItem = ChatListView.Adapter.GetItem(elPosition);
-            Chat_List_item chat = Java_Service.CastJavaObject.Cast<Chat_List_item>(selectedItem);
-            int selectedChatId = chat.Id;
-
-            Intent intent = new(this, typeof(ChatDetailActivity));
-            intent.PutExtra("ChatId", selectedChatId);
-
-            StartActivity(intent);
-        }
-
         public void PopUpAddNewChat()
         {
             newChatName = new EditText(this);
@@ -71,7 +58,6 @@ namespace UDV_TEST
             AlertDialog dialog = dialogBuilder.Create();
             dialog.Show();
         }
-
         private void ConfirmButton(object sender, DialogClickEventArgs e)
         {
             string newChatName = this.newChatName.Text ?? "";
@@ -82,12 +68,24 @@ namespace UDV_TEST
             var dialog = (AlertDialog)sender;
             dialog.Cancel();
         }
-
-        private void UpdateChatList()
+        private void UpdateChatList(bool UpdateFromDB = false)
         {
-            Chat_List.FillChats();
+            if(UpdateFromDB)
+                Chat_List.FillChats();
             ChatListView.Adapter = new Chat_List_Item_Adapter(this, Chat_List.chats);
         }
+        private void GoToChat(int elPosition)
+        {
+            var selectedItem = ChatListView.Adapter.GetItem(elPosition);
+            Chat_List_item chat = Java_Service.CastJavaObject.Cast<Chat_List_item>(selectedItem);
+            int selectedChatId = chat.Id;
+
+            Intent intent = new(this, typeof(ChatDetailActivity));
+            intent.PutExtra("ChatId", selectedChatId);
+
+            StartActivity(intent);
+        }
+
     }
 }
 

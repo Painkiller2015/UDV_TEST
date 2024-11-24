@@ -14,10 +14,14 @@ namespace UDV_TEST.ViewModels
         public Chat_Model(int id)
         {
             Id = id;
-            FillChat();
         }
         public class Chat_Message
         {
+            public string AuthorName { get; init; }
+            public string Message { get; set; }
+            public long TimeTicks { get; init; }
+            public string Date { get; init; }
+            public bool IsBot { get; init; }
             public Chat_Message(bool isBot, string message, DateTime dateTime)
             {
                 Message = message;
@@ -25,13 +29,7 @@ namespace UDV_TEST.ViewModels
                 Date = Date_Service.DateTimeToString(dateTime);
                 IsBot = isBot;
                 AuthorName = DB_Service.GetUserNameById(isBot);
-            }
-
-            public string AuthorName { get; init; }
-            public string Message { get; set; }
-            public long TimeTicks { get; init; }
-            public string Date { get; init; }
-            public bool IsBot { get; init; }
+            }        
         }
         public void FillChat()
         {
@@ -44,18 +42,12 @@ namespace UDV_TEST.ViewModels
                                             ).ToList();
             }
         }
-        public void AddMessage(bool isBot, string message, DateTime date)
+        public void SendMessage(Chat_Message message)
         {
-            Chat_Message newMessage = new(isBot, message, date);
-            messages.Add(newMessage);
-            SaveMessage(newMessage);
-        }
-        public void AddMessage(Chat_Message message)
-        {
-            messages.Add(message);
-            SaveMessage(message);
-        }
-        public void GetAnswer(Chat_Message message)
+            AddMessage(message);
+            GetAnswer(message);
+        } 
+        private void GetAnswer(Chat_Message message)
         {
             BOT.Answer answer = BOT.SendMessage(message.Message);
 
@@ -64,10 +56,16 @@ namespace UDV_TEST.ViewModels
                 AddMessage(true, answer.Message, answer.Date);
             }
         }
-        public void SendMessage(Chat_Message message)
+        private void AddMessage(bool isBot, string message, DateTime date)
         {
-            AddMessage(message);
-            GetAnswer(message);
+            Chat_Message newMessage = new(isBot, message, date);
+            messages.Add(newMessage);
+            SaveMessage(newMessage);
+        }
+        private void AddMessage(Chat_Message message)
+        {
+            messages.Add(message);
+            SaveMessage(message);
         }
         private void SaveMessage(Chat_Message cm)
         {

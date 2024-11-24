@@ -1,6 +1,6 @@
 ﻿using Android.Content;
 using Android.Views;
-using UDV_TEST.Entity;
+using static UDV_TEST.ViewModels.Chat_List_Model;
 
 namespace UDV_TEST.Adapters
 {

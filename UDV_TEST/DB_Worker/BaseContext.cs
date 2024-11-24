@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 
 namespace UDV_TEST.DB_Worker
@@ -13,20 +15,20 @@ namespace UDV_TEST.DB_Worker
         }
         public BaseContext(DbContextOptions<BaseContext> options)
         : base(options)
-        {
+        {            
 
         }
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<ChatHistory> ChatHistories { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite(_connectionString);
+        {                       
+            base.OnConfiguring(optionsBuilder);            
+            optionsBuilder.UseSqlite(_connectionString);            
 
-            CheckDatabase(_dbFile);
-        }
+            CheckDatabase(_dbFile);                        
+        }        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {           
             modelBuilder.Entity<Chat>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -46,9 +48,9 @@ namespace UDV_TEST.DB_Worker
             });
         }
         private void CheckDatabase(string path)
-        {
-            if (!File.Exists(path))
-                File.WriteAllBytes(path, Properties.Resources.sqlite);
+        {                                    
+            if (!File.Exists(path))              
+                File.WriteAllBytes(path, Properties.Resources.sqlite);                        
         }
     }
 }

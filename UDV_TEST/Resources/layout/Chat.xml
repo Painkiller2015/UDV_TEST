@@ -35,8 +35,7 @@
 			android:id="@+id/BtnSendMessage"
 			android:layout_width="48dp"
 			android:layout_height="48dp"
-			android:layout_alignParentBottom="true"
-			
+			android:layout_alignParentBottom="true"			
 			android:elevation="8dp"
 			android:background="@mipmap/sendmessageimage" 
 		/>

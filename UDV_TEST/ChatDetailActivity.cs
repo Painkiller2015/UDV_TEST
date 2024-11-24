@@ -64,9 +64,10 @@ namespace UDV_TEST
             Chat_Message message = new(false, newMessage.Text, DateTime.Now);
             chat.SendMessage(message);
         }
-        private void UpdateChatList()
+        private void UpdateChatList(bool UpdateFromDB = false)
         {
-            chat.FillChat();
+            if (UpdateFromDB)
+                chat.FillChat();
             chatMessagesView.Adapter = new Chat_Message_Adapter(this, chat.messages);
         }
     }

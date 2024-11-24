@@ -1,4 +1,10 @@
-﻿using UDV_TEST.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static UDV_TEST.ViewModels.Chat_List_Model;
+using UDV_TEST.ViewModels;
 
 namespace UDV_TEST.Services
 {

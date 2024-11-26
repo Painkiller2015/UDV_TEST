@@ -12,7 +12,7 @@ namespace UDV_TEST
         public static Chat_List_Model Chat_List { get; } = new();
         private ListView ChatListView = null;
         private Button BtnAddNewChat = null;
-        private EditText newChatName = null;
+        //private EditText newChatName = null;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -47,7 +47,7 @@ namespace UDV_TEST
         }
         public void PopUpAddNewChat()
         {
-            newChatName = new EditText(this);
+            EditText newChatName = new(this);
 
             AlertDialog.Builder dialogBuilder = new(this);
             dialogBuilder?.SetTitle("Новый чат")
@@ -55,13 +55,16 @@ namespace UDV_TEST
                          ?.SetView(newChatName)
                          ?.SetPositiveButton("добавить", handler: ConfirmButton)
                          ?.SetNegativeButton("отменить", handler: CancelButton);
+
+                         
             AlertDialog dialog = dialogBuilder.Create();
+            dialog.SetOnShowListener(new AddChatDialogListener(dialog, newChatName)  );
             dialog.Show();
         }
         private void ConfirmButton(object sender, DialogClickEventArgs e)
         {
-            string newChatName = this.newChatName.Text ?? "";
-            Chat_List.AddNewChat(newChatName);
+            EditText text = (EditText)sender;            
+            Chat_List.AddNewChat(text.Text);
         }
         private void CancelButton(object sender, DialogClickEventArgs e)
         {
@@ -70,7 +73,7 @@ namespace UDV_TEST
         }
         private void UpdateChatList(bool UpdateFromDB = false)
         {
-            if(UpdateFromDB)
+            if (UpdateFromDB)
                 Chat_List.FillChats();
             ChatListView.Adapter = new Chat_List_Item_Adapter(this, Chat_List.chats);
         }
@@ -85,7 +88,30 @@ namespace UDV_TEST
 
             StartActivity(intent);
         }
+        private class AddChatDialogListener : Java.Lang.Object, IDialogInterfaceOnShowListener
+        {
+            private readonly AlertDialog dialog;
+            private readonly EditText newChatName;
 
+            public AddChatDialogListener(AlertDialog dialog, EditText input)
+            {
+                this.dialog = dialog;
+                newChatName = input;
+            }
+
+            public void OnShow(IDialogInterface dialog)
+            {
+                Button positiveButton = this.dialog.GetButton((int)DialogButtonType.Positive);
+                positiveButton.Enabled = false; 
+                
+                newChatName.TextChanged += (sender, e) =>
+                {
+                    string newChatName = this.newChatName.Text ?? "";
+                    positiveButton.Enabled = !string.IsNullOrEmpty(newChatName);
+                };
+            }
+
+        }
     }
 }
 

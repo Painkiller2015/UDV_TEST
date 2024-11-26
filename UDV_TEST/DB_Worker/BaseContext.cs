@@ -7,8 +7,8 @@ namespace UDV_TEST.DB_Worker
 {
     public class BaseContext : DbContext
     {
-        private const string _dbFile = "/data/data/com.companyname.UDV_TEST/databases/sqlite.db3";
-        private const string _connectionString = $"Data Source={_dbFile}";
+        private const string _dbName = "sqlite.db3";
+        private readonly string _dbFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/" +_dbName;
 
         public BaseContext()
         {
@@ -21,7 +21,9 @@ namespace UDV_TEST.DB_Worker
         public virtual DbSet<Chat> Chats { get; set; }
         public virtual DbSet<ChatHistory> ChatHistories { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {                       
+        {
+            string _connectionString = $"Data Source={_dbFile}";
+
             base.OnConfiguring(optionsBuilder);            
             optionsBuilder.UseSqlite(_connectionString);            
 
@@ -48,8 +50,8 @@ namespace UDV_TEST.DB_Worker
             });
         }
         private void CheckDatabase(string path)
-        {                                    
-            if (!File.Exists(path))              
+        {
+            if (!File.Exists(path))
                 File.WriteAllBytes(path, Properties.Resources.sqlite);                        
         }
     }

@@ -58,11 +58,14 @@ namespace UDV_TEST
         }
         private void ProcessingMessage()
         {
-            if (string.IsNullOrWhiteSpace(newMessage.Text))
+            string message = newMessage.Text; 
+            if (string.IsNullOrWhiteSpace(message))
                 return;
 
-            Chat_Message message = new(false, newMessage.Text, DateTime.Now);
-            chat.SendMessage(message);
+            newMessage.Text = null;
+
+            Chat_Message chatMessage = new(false, message, DateTime.Now);
+            chat.SendMessage(chatMessage);
         }
         private void UpdateChatList(bool UpdateFromDB = false)
         {

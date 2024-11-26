@@ -33,7 +33,7 @@ namespace UDV_TEST
             newMessage = FindViewById<EditText>(Resource.Id.NewMessage);
             btnSend = FindViewById<Button>(Resource.Id.BtnSendMessage);
 
-            UpdateChatList();
+            UpdateChatList(true);
         }
         private void SubscribeToEvents()
         {

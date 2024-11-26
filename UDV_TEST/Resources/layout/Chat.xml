@@ -2,20 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-	<Button
-		android:id="@+id/BtnBack"
-		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:paddingTop="0px"
-		android:background="@mipmap/gobackimage" 
-    />
+	<LinearLayout android:id="@+id/toolBarLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentTop="true"
+		android:orientation="horizontal"
+		android:background="@android:color/holo_blue_light"
+		>
+		<Button
+			android:id="@+id/BtnBack"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:paddingTop="0px"
+			android:background="@mipmap/gobackimage"
+			android:layout_above="@id/bottomLayout"
+		/>
+	</LinearLayout>
 	<ListView
 		android:id="@+id/MessagesList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"		
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_below="@id/toolBarLayout"
 		android:layout_above="@id/bottomLayout"
-        android:layout_below="@id/BtnBack"		
 	/>
 	<LinearLayout
 		android:id="@+id/bottomLayout"
@@ -39,7 +48,7 @@
 			android:layout_height="48dp"
 			android:layout_alignParentBottom="true"
 			android:elevation="8dp"
-			android:background="@mipmap/sendmessageimage" 
+			android:background="@mipmap/sendmessageimage"
 		/>
-	</LinearLayout>	
+	</LinearLayout>
 </RelativeLayout>

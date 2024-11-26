@@ -8,6 +8,6 @@ namespace UDV_TEST.DB_Worker
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public virtual ICollection<ChatHistory> Messages { get; set; }
+        public virtual ICollection<ChatHistory> Messages { get; set; } = new List<ChatHistory>();
     }
 }

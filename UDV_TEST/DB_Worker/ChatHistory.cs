@@ -16,6 +16,6 @@ namespace UDV_TEST.DB_Worker
         [Required]
         public bool IsBot { get; set; }
         [Required]
-        public string Message { get; set; }
+        public string Message { get; set; }        
     }
 }

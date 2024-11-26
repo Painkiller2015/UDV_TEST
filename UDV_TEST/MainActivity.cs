@@ -12,7 +12,7 @@ namespace UDV_TEST
         public static Chat_List_Model Chat_List { get; } = new();
         private ListView ChatListView = null;
         private Button BtnAddNewChat = null;
-        //private EditText newChatName = null;
+        private EditText newChatName = null;
         protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -47,7 +47,7 @@ namespace UDV_TEST
         }
         public void PopUpAddNewChat()
         {
-            EditText newChatName = new(this);
+            newChatName = new(this);
 
             AlertDialog.Builder dialogBuilder = new(this);
             dialogBuilder?.SetTitle("Новый чат")
@@ -63,8 +63,8 @@ namespace UDV_TEST
         }
         private void ConfirmButton(object sender, DialogClickEventArgs e)
         {
-            EditText text = (EditText)sender;            
-            Chat_List.AddNewChat(text.Text);
+            Chat_List.AddNewChat(newChatName.Text);
+
         }
         private void CancelButton(object sender, DialogClickEventArgs e)
         {

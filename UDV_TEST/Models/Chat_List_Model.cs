@@ -15,10 +15,10 @@ namespace UDV_TEST.ViewModels
         {
             public int Id { get; set; } 
             public string Header { get; set; }
-            public string? Author { get; set; }
-            public string? Message { get; set; }
-            public string? Date { get; set; }
-            public long? Ticks { get; set; }
+            public string Author { get; set; }
+            public string Message { get; set; }
+            public string Date { get; set; }
+            public long Ticks { get; set; }
             public Chat_List_item(int id, string header)
             {
                 Id = id;

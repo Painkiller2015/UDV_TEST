@@ -65,13 +65,15 @@ namespace UDV_TEST
             newMessage.Text = null;
 
             Chat_Message chatMessage = new(false, message, DateTime.Now);
-            chat.SendMessage(chatMessage);
+            chat.SendMessage(chatMessage);            
         }
         private void UpdateChatList(bool UpdateFromDB = false)
         {
             if (UpdateFromDB)
-                chat.FillChat();
+                chat.FillChat();            
+
             chatMessagesView.Adapter = new Chat_Message_Adapter(this, chat.messages);
+            chatMessagesView.SetSelection(chat.messages.Count - 1);
         }
     }
 }

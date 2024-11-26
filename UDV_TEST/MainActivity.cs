@@ -75,7 +75,7 @@ namespace UDV_TEST
         {
             if (UpdateFromDB)
                 Chat_List.FillChats();
-            ChatListView.Adapter = new Chat_List_Item_Adapter(this, Chat_List.chats);
+            ChatListView.Adapter = new Chat_List_Item_Adapter(this,  Chat_List.chats.OrderByDescending(ch => ch.Ticks).ToList());
         }
         private void GoToChat(int elPosition)
         {

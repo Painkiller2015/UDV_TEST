@@ -18,6 +18,7 @@ namespace UDV_TEST.ViewModels
             public string? Author { get; set; }
             public string? Message { get; set; }
             public string? Date { get; set; }
+            public long? Ticks { get; set; }
             public Chat_List_item(int id, string header)
             {
                 Id = id;
@@ -29,6 +30,7 @@ namespace UDV_TEST.ViewModels
                 Header = newChat.Name;
                 Message = history.Message;
                 Date = Date_Service.TicksToDateTimeString(history.TimeTicks);
+                Ticks = history.TimeTicks;
             }
 
         }
@@ -42,8 +44,7 @@ namespace UDV_TEST.ViewModels
                 db.Chats.Add(newChat);
                 db.SaveChanges();
 
-                chats.Add(new Chat_List_item(newChat, newChat.Messages.First()));
-
+                chats.Add(new Chat_List_item(newChat, newChat.Messages.First()));               
                 PropertyChanged.Invoke(this, null);
             };
         }
@@ -74,7 +75,7 @@ namespace UDV_TEST.ViewModels
                                         Message = messages.OrderByDescending(m => m.TimeTicks).FirstOrDefault().Message,
                                         Date = (long?)messages.OrderByDescending(m => m.TimeTicks).FirstOrDefault().TimeTicks
                                     }
-                                ).ToList();
+                                ).OrderByDescending(ch => ch.Date).ToList();
 
                 chats = dbChats.Select(m => new Chat_List_item(m.Id, m.Header)
                 {

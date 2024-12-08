@@ -8,7 +8,7 @@ namespace UDV_TEST
     [Activity(Label = "@string/app_name")]
     internal class ChatDetailActivity : Activity
     {
-        public Chat_Model chat = null;
+        private Chat_Model chat = null;
         private int chatId;
         private EditText newMessage = null;
         private ListView chatMessagesView = null;
